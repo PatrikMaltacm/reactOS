@@ -1,0 +1,15 @@
+.window{
+    width: 600px;
+    height: 400px;
+    background-color: white;
+}
+
+.window .header{
+    background-color: 'lightgray';
+    padding: 5px;
+    cursor: 'move';
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
