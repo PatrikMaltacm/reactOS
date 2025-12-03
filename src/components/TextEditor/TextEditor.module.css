@@ -1,0 +1,24 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    background-color: aqua;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+
+.main p {
+    font-size: 14px;
+}
+
+.react-draggable {
+  cursor: grab;
+}
+.react-draggable:active {
+  cursor: grabbing;
+}
