@@ -1,4 +1,4 @@
-import styles from './TextEditor.module.css';
+// import styles from './TextEditor.module.css';
 import DesktopIcon from "../DesktopIcon";
 
 export default function TextEditor() {
