@@ -98,9 +98,9 @@ export default function Files() {
 
             {files.length === 0 && <p>Nenhum arquivo criado ainda.</p>}
 
-            <ul>
+            <ul style={{listStyle: "none" }}>
               {files.map((file) => (
-                <li key={file.id} style={{ marginBottom: "6px", listStyle: "none" }}>
+                <li key={file.id} style={{ marginBottom: "6px"}}>
                   📄 <strong>{file.name}</strong>
 
                   <button
