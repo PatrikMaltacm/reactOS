@@ -1,8 +1,7 @@
-// import styles from './TextEditor.module.css';
-import { Rnd } from "react-rnd";
 import DesktopIcon from "../DesktopIcon";
 import { useState } from "react";
-import styles from "./BlackJack.module.css"
+import Window from "../Window";
+import { GiCardJackClubs } from "react-icons/gi";
 
 export interface FileItem {
     id: string;
@@ -25,22 +24,23 @@ export default function BlackJack() {
     
     return (
         <>
-            <DesktopIcon title={"BackJack"} onClick={onClick} x={20} y={250} />
+            <DesktopIcon 
+            Icon={<GiCardJackClubs  size={50}/>}
+            title={"BackJack"} 
+            onDoubleClick={onClick} 
+            x={20} 
+            y={250} 
+            />
 
-            {openWindow && (
-                <Rnd
-                    default={{ x: 200, y: 200, width: 800, height: 600 }}
-                    className={'window'}
-                >
-                    <header className={styles.header}>
-                        <strong>BlackJack</strong>
-                        <button onClick={handleCloseWindow}>Close</button>
-                    </header>
-
-                    <iframe src="https://v3nicios.github.io/JogoBlackJack21/" style={{width: "100%", height: '100%'}}></iframe>
-
-                </Rnd>
-            )}
+            <Window
+                title="BlackJack"
+                isOpen={openWindow}
+                onClose={handleCloseWindow}
+                defaultWidth={800}
+                defaultHeight={600}
+            >
+                <iframe src="https://v3nicios.github.io/JogoBlackJack21/" style={{width: "100%", height: '100%'}}></iframe>
+            </Window>
         </>
     )
 }

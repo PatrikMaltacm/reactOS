@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import type { ChangeEvent } from "react";
 import DesktopIcon from "../DesktopIcon";
 import styles from "./Files.module.css";
-import { Rnd } from "react-rnd";
+import Window from "../Window";
+import { FaFolder } from "react-icons/fa";
 
 export interface FileItem {
   id: string;
@@ -76,77 +77,74 @@ export default function Files() {
   return (
     <>
       <DesktopIcon
+        Icon={<FaFolder size={50}/>}
         title={"Files"}
         x={20}
         y={150}
-        onClick={() => setOpenWindow(true)}
+        onDoubleClick={() => setOpenWindow(true)}
       />
 
-      {openWindow && (
-        <Rnd
-          default={{ x: 200, y: 200, width: 600, height: 400 }}
-          className={styles.window}
-        >
-          <header className={styles.header}>
-            <strong>Files</strong>
-            <button onClick={() => setShowModal(true)}>New File</button>
-            <button onClick={() => setOpenWindow(false)}>Close</button>
-          </header>
+      <Window
+        title="Files"
+        isOpen={openWindow}
+        onClose={() => setOpenWindow(false)}
+        buttons={[
+          { label: "New File", onClick: () => setShowModal(true) },
+        ]}
+      >
+        <div className={styles.content}>
+          <h3>Arquivos:</h3>
 
-          <div className={styles.content}>
-            <h3>Arquivos:</h3>
+          {files.length === 0 && <p>Nenhum arquivo criado ainda.</p>}
 
-            {files.length === 0 && <p>Nenhum arquivo criado ainda.</p>}
+          <ul style={{listStyle: "none" }}>
+            {files.map((file) => (
+              <li key={file.id} style={{ marginBottom: "6px"}}>
+                📄 <strong>{file.name}</strong>
 
-            <ul style={{listStyle: "none" }}>
-              {files.map((file) => (
-                <li key={file.id} style={{ marginBottom: "6px"}}>
-                  📄 <strong>{file.name}</strong>
+                <button
+                  style={{ marginLeft: 10 }}
+                  onClick={() => alert(file.content)}
+                >
+                  Abrir
+                </button>
 
-                  <button
-                    style={{ marginLeft: 10 }}
-                    onClick={() => alert(file.content)}
-                  >
-                    Abrir
-                  </button>
+                <button
+                  style={{ marginLeft: 10, color: "red" }}
+                  onClick={() => deleteFile(file.id)}
+                >
+                  Excluir
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-                  <button
-                    style={{ marginLeft: 10, color: "red" }}
-                    onClick={() => deleteFile(file.id)}
-                  >
-                    Excluir
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* Modal */}
+        {showModal && (
+          <div className={styles.modalOverlay}>
+            <div className={styles.modal}>
+              <h3>Novo Arquivo</h3>
 
-          {/* Modal */}
-          {showModal && (
-            <div className={styles.modalOverlay}>
-              <div className={styles.modal}>
-                <h3>Novo Arquivo</h3>
+              <label>
+                Nome:
+                <input
+                  value={fileName}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setFileName(e.target.value)
+                  }
+                  placeholder="ex: notas.txt"
+                />
+              </label>
 
-                <label>
-                  Nome:
-                  <input
-                    value={fileName}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                      setFileName(e.target.value)
-                    }
-                    placeholder="ex: notas.txt"
-                  />
-                </label>
-
-                <div className={styles.modalActions}>
-                  <button onClick={createFile}>Salvar</button>
-                  <button onClick={() => setShowModal(false)}>Cancelar</button>
-                </div>
+              <div className={styles.modalActions}>
+                <button onClick={createFile}>Salvar</button>
+                <button onClick={() => setShowModal(false)}>Cancelar</button>
               </div>
             </div>
-          )}
-        </Rnd>
-      )}
+          </div>
+        )}
+      </Window>
     </>
   );
 }

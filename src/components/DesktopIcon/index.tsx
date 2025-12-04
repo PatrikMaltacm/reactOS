@@ -4,12 +4,13 @@ import { useState } from 'react';
 
 type DesktopIconProps = {
     title: string;
-    onClick?: () => void;
+    onDoubleClick?: () => void;
     x: number;
     y: number;
+    Icon: React.ReactNode;
 }
 
-export default function DesktopIcon({title, onClick: onclick, x, y}: DesktopIconProps) {
+export default function DesktopIcon({title, onDoubleClick, x, y, Icon}: DesktopIconProps) {
     const [cursor , setCursor] = useState('pointer');  
 
     return (
@@ -18,7 +19,7 @@ export default function DesktopIcon({title, onClick: onclick, x, y}: DesktopIcon
             enableResizing={false}
             onDragStart={() => setCursor('grabbing')}
             onDragStop={() => setCursor('pointer')}
-            onClick={onclick}
+            onDoubleClick={onDoubleClick}
             default={{
                 x,
                 y,
@@ -30,7 +31,7 @@ export default function DesktopIcon({title, onClick: onclick, x, y}: DesktopIcon
             }}
         >
             <div className={styles.main}>
-                <div className={styles.icon}></div>
+                {Icon}
                 <p>{title}</p>
             </div>
         </Rnd>

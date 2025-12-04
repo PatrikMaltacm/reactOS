@@ -1,9 +1,9 @@
-// import styles from './TextEditor.module.css';
 import styles from "./TextEditor.module.css";
-import { Rnd } from "react-rnd";
 import { useMemo, useRef, useState } from "react";
 import DesktopIcon from "../DesktopIcon";
+import Window from "../Window";
 import JoditEditor from "jodit-react";
+import { TiDocumentText } from "react-icons/ti";
 
 export interface FileItem {
     id: string;
@@ -113,58 +113,53 @@ export default function TextEditor() {
 
     return (
         <>
-            <DesktopIcon title={"TextEditor"} onClick={onClick} x={20} y={50} />
+            <DesktopIcon title={"TextEditor"} onDoubleClick={onClick} x={20} y={50} Icon={<TiDocumentText size={50}/>}/>
 
-            {openWindow && (
-                <Rnd
-                    default={{ x: 200, y: 200, width: 600, height: 400 }}
-                    className={'window'}
-                >
-                    <header className={styles.header}>
-                        <strong>Files</strong>
-                        <button onClick={() => setShowModal(true)}>Open File</button>
-                        <button onClick={handleSaveFile}>Save File</button>
-                        <button onClick={handleCloseWindow}>Close</button>
-                    </header>
+            <Window
+                title="TextEditor - Files"
+                isOpen={openWindow}
+                onClose={handleCloseWindow}
+                buttons={[
+                    { label: "Open File", onClick: () => setShowModal(true) },
+                    { label: "Save File", onClick: handleSaveFile },
+                ]}
+            >
+                <div className={styles.editor}>
+                    <JoditEditor
+                        ref={editor}
+                        value={body}
+                        config={editorConfig}
+                        tabIndex={1}
+                        onBlur={(newContent) => setBody(newContent)}
+                        onChange={() => { }}
+                    />
+                </div>
 
-                    <div>
-                        <JoditEditor
-                            ref={editor}
-                            value={body}
-                            config={editorConfig}
-                            tabIndex={1}
-                            onBlur={(newContent) => setBody(newContent)}
-                            onChange={() => { }}
-                            className={styles.editor}
-                        />
-                    </div>
+                {showModal && (
+                    <div className={styles.modalOverlay}>
+                        <div className={styles.modal}>
+                            <h3>Novo Arquivo</h3>
+                            {files.length === 0 && <p>Nenhum arquivo criado ainda.</p>}
 
-                    {showModal && (
-                        <div className={styles.modalOverlay}>
-                            <div className={styles.modal}>
-                                <h3>Novo Arquivo</h3>
-                                {files.length === 0 && <p>Nenhum arquivo criado ainda.</p>}
+                            <ul style={{ listStyle: "none" }}>
+                                {files.map((file) => (
+                                    <li key={file.id} style={{ marginBottom: "6px" }}>
+                                        📄 <strong>{file.name}</strong>
 
-                                <ul style={{ listStyle: "none" }}>
-                                    {files.map((file) => (
-                                        <li key={file.id} style={{ marginBottom: "6px" }}>
-                                            📄 <strong>{file.name}</strong>
-
-                                            <button
-                                                style={{ marginLeft: 10 }}
-                                                onClick={() => handleOpenFile(file)}
-                                            >
-                                                Abrir
-                                            </button>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <button onClick={() => setShowModal(false)}>Close</button>
-                            </div>
+                                        <button
+                                            style={{ marginLeft: 10 }}
+                                            onClick={() => handleOpenFile(file)}
+                                        >
+                                            Abrir
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                            <button onClick={() => setShowModal(false)}>Close</button>
                         </div>
-                    )}
-                </Rnd>
-            )}
+                    </div>
+                )}
+            </Window>
         </>
     )
 }

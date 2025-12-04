@@ -5,8 +5,6 @@ function App() {
 
   return (
     <>
-      ReacOS v.0.0.01
-      
       <Desktop/>
     </>
   )

@@ -1,0 +1,52 @@
+.window {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+
+.header {
+  background-color: #f0f0f0;
+  padding: 8px 12px;
+  cursor: move;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  min-height: 40px;
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+.header strong {
+  flex: 1;
+  user-select: none;
+}
+
+.header button {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.header button:hover {
+  background: #e0e0e0;
+  border-color: #999;
+}
+
+.header button:active {
+  background: #d0d0d0;
+}
+
+.content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
