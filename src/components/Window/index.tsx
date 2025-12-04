@@ -1,6 +1,7 @@
 import { Rnd } from "react-rnd";
 import styles from "./Window.module.css";
 import type { ReactNode } from "react";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 interface WindowProps {
   title: string;
@@ -36,14 +37,14 @@ export default function Window({
       <header className={styles.header}>
         <strong>{title}</strong>
         {buttons.map((btn, index) => (
-          <button key={index} onClick={btn.onClick}>
+          <button className={styles.defaultButton} key={index} onClick={btn.onClick}>
             {btn.label}
           </button>
         ))}
-        <button onClick={onClose}>Close</button>
+        <button onClick={onClose} className={styles.closeButton}><IoMdCloseCircleOutline className={styles.iconClose} size={20}/></button>
       </header>
 
-      <div className={styles.content}>{children}</div>
+      {children}
     </Rnd>
   );
 }

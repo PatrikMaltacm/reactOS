@@ -25,7 +25,7 @@
   user-select: none;
 }
 
-.header button {
+.header .defaultButton {
   padding: 4px 8px;
   border: 1px solid #ccc;
   background: white;
@@ -35,12 +35,23 @@
   transition: all 0.2s;
 }
 
-.header button:hover {
+.closeButton{
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeButton :hover{
+    cursor: pointer;
+}
+
+.header .defaultButton:hover {
   background: #e0e0e0;
   border-color: #999;
 }
 
-.header button:active {
+.header .defaultButton:active {
   background: #d0d0d0;
 }
 

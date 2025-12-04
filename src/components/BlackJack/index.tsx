@@ -17,19 +17,19 @@ export default function BlackJack() {
         setOpenWindow(true);
     }
 
-      const handleCloseWindow = () => {
+    const handleCloseWindow = () => {
         setOpenWindow(false)
     }
 
-    
+
     return (
         <>
-            <DesktopIcon 
-            Icon={<GiCardJackClubs  size={50}/>}
-            title={"BackJack"} 
-            onDoubleClick={onClick} 
-            x={20} 
-            y={250} 
+            <DesktopIcon
+                Icon={<GiCardJackClubs size={50} />}
+                title={"BackJack"}
+                onDoubleClick={onClick}
+                x={20}
+                y={250}
             />
 
             <Window
@@ -39,7 +39,9 @@ export default function BlackJack() {
                 defaultWidth={800}
                 defaultHeight={600}
             >
-                <iframe src="https://v3nicios.github.io/JogoBlackJack21/" style={{width: "100%", height: '100%'}}></iframe>
+                <div style={{ width: '100%', height: '100%' }}>
+                    <iframe src="https://v3nicios.github.io/JogoBlackJack21/" style={{ width: "100%", height: '100%' }}></iframe>
+                </div>
             </Window>
         </>
     )

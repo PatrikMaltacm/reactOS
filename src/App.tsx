@@ -1,12 +1,16 @@
-import './App.css'
-import Desktop from './components/Desktop'
+import BlackJack from './components/BlackJack'
+import styles from "./App.module.css"
+import Files from './components/Files'
+import TextEditor from './components/TextEditor'
 
 function App() {
 
   return (
-    <>
-      <Desktop/>
-    </>
+    <div className={styles.desktop}>
+      <TextEditor />
+      <Files />
+      <BlackJack />
+    </div>
   )
 }
 
