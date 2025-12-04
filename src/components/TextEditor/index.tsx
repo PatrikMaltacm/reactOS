@@ -31,6 +31,13 @@ export default function TextEditor() {
         console.log(files)
     }
 
+    const handleCloseWindow = () => {
+        setOpenWindow(false)
+        setActualFiles(undefined)
+        setFiles([])
+        setBody('')
+    }
+
     const handleOpenFile = (fileContent: FileItem) => {
         setActualFiles(fileContent)
         setBody(fileContent.content)
@@ -117,7 +124,7 @@ export default function TextEditor() {
                         <strong>Files</strong>
                         <button onClick={() => setShowModal(true)}>Open File</button>
                         <button onClick={handleSaveFile}>Save File</button>
-                        <button onClick={() => setOpenWindow(false)}>Close</button>
+                        <button onClick={handleCloseWindow}>Close</button>
                     </header>
 
                     <div>

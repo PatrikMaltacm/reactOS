@@ -1,0 +1,8 @@
+.header{
+    background-color: 'lightgray';
+    padding: 5px;
+    cursor: 'move';
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
