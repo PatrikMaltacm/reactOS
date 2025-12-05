@@ -2,6 +2,7 @@ import DesktopIcon from "../DesktopIcon";
 import { useState } from "react";
 import Window from "../Window";
 import { GiCardJackClubs } from "react-icons/gi";
+import { useRegisterWindow } from "../../hooks/useRegisterWindow";
 
 export interface FileItem {
     id: string;
@@ -10,8 +11,11 @@ export interface FileItem {
 }
 
 export default function BlackJack() {
-
     const [openWindow, setOpenWindow] = useState<boolean>(false);
+
+    const title = "BlackJack"
+
+    useRegisterWindow(title, openWindow);
 
     const onClick = () => {
         setOpenWindow(true);
@@ -26,14 +30,14 @@ export default function BlackJack() {
         <>
             <DesktopIcon
                 Icon={<GiCardJackClubs size={50} />}
-                title={"BackJack"}
+                title={title}
                 onDoubleClick={onClick}
                 x={20}
                 y={250}
             />
 
             <Window
-                title="BlackJack"
+                title={title}
                 isOpen={openWindow}
                 onClose={handleCloseWindow}
                 defaultWidth={800}

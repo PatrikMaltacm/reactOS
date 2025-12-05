@@ -1,6 +1,6 @@
 import { Rnd } from "react-rnd";
 import styles from "./Window.module.css";
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
 interface WindowProps {
@@ -33,6 +33,7 @@ export default function Window({
       default={{ x: defaultX, y: defaultY, width: defaultWidth, height: defaultHeight }}
       className={styles.window}
       dragHandleClassName={styles.header}
+      bounds={"window"}
     >
       <header className={styles.header}>
         <strong>{title}</strong>

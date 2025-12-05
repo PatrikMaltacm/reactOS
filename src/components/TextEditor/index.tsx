@@ -4,6 +4,7 @@ import DesktopIcon from "../DesktopIcon";
 import Window from "../Window";
 import JoditEditor from "jodit-react";
 import { TiDocumentText } from "react-icons/ti";
+import { useRegisterWindow } from "../../hooks/useRegisterWindow";
 
 export interface FileItem {
     id: string;
@@ -17,6 +18,9 @@ export default function TextEditor() {
     const [showModal, setShowModal] = useState<boolean>(false);
     const [files, setFiles] = useState<FileItem[]>([]);
     const [actualFiles, setActualFiles] = useState<FileItem | undefined>(undefined);
+
+    const title = "TextEditor";
+    useRegisterWindow(title, openWindow);
 
     const findFiles = () => {
         const saved = localStorage.getItem("webos_files");
@@ -113,10 +117,10 @@ export default function TextEditor() {
 
     return (
         <>
-            <DesktopIcon title={"TextEditor"} onDoubleClick={onClick} x={20} y={50} Icon={<TiDocumentText size={50}/>}/>
+            <DesktopIcon title={title} onDoubleClick={onClick} x={20} y={50} Icon={<TiDocumentText size={50} />} />
 
             <Window
-                title="TextEditor - Files"
+                title={title}
                 isOpen={openWindow}
                 onClose={handleCloseWindow}
                 buttons={[

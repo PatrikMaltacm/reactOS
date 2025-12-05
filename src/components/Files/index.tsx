@@ -4,6 +4,7 @@ import DesktopIcon from "../DesktopIcon";
 import styles from "./Files.module.css";
 import Window from "../Window";
 import { FaFolder } from "react-icons/fa";
+import { useRegisterWindow } from "../../hooks/useRegisterWindow";
 
 export interface FileItem {
   id: string;
@@ -19,6 +20,11 @@ export default function Files() {
   const [fileContent, setFileContent] = useState<string>("");
 
   const [files, setFiles] = useState<FileItem[]>([]);
+
+  const title = "Files"
+
+  useRegisterWindow(title, openWindow);
+
 
   // -------------------------------------------------------------------
   // Load saved files from LocalStorage
@@ -77,15 +83,15 @@ export default function Files() {
   return (
     <>
       <DesktopIcon
-        Icon={<FaFolder size={50}/>}
-        title={"Files"}
+        Icon={<FaFolder size={50} />}
+        title={title}
         x={20}
         y={150}
         onDoubleClick={() => setOpenWindow(true)}
       />
 
       <Window
-        title="Files"
+        title={title}
         isOpen={openWindow}
         onClose={() => setOpenWindow(false)}
         buttons={[
@@ -97,9 +103,9 @@ export default function Files() {
 
           {files.length === 0 && <p>Nenhum arquivo criado ainda.</p>}
 
-          <ul style={{listStyle: "none" }}>
+          <ul style={{ listStyle: "none" }}>
             {files.map((file) => (
-              <li key={file.id} style={{ marginBottom: "6px"}}>
+              <li key={file.id} style={{ marginBottom: "6px" }}>
                 📄 <strong>{file.name}</strong>
 
                 <button
