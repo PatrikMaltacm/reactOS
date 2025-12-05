@@ -29,7 +29,7 @@ export default function BlackJack() {
     return (
         <>
             <DesktopIcon
-                Icon={<GiCardJackClubs size={50} />}
+                Icon={<GiCardJackClubs size={50} color="white"/>}
                 title={title}
                 onDoubleClick={onClick}
                 x={20}
@@ -40,8 +40,8 @@ export default function BlackJack() {
                 title={title}
                 isOpen={openWindow}
                 onClose={handleCloseWindow}
-                defaultWidth={800}
-                defaultHeight={600}
+                defaultWidth={1280}
+                defaultHeight={720}
             >
                 <div style={{ width: '100%', height: '100%' }}>
                     <iframe src="https://v3nicios.github.io/JogoBlackJack21/" style={{ width: "100%", height: '100%' }}></iframe>

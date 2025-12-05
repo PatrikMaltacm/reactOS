@@ -10,7 +10,7 @@ function TaskBar() {
     <div className={styles.taskbar}>
         {openedWindows.map((window: any) => {
             return(
-                <DynamicIcon name={window} size={45}/>
+                <DynamicIcon name={window} size={45} color="white"/>
             )
         })}
     </div>

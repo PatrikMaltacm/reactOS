@@ -83,7 +83,7 @@ export default function Files() {
   return (
     <>
       <DesktopIcon
-        Icon={<FaFolder size={50} />}
+        Icon={<FaFolder size={50} color="white"/>}
         title={title}
         x={20}
         y={150}

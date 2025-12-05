@@ -20,17 +20,19 @@ export default function Window({
   isOpen,
   onClose,
   children,
-  defaultWidth = 600,
-  defaultHeight = 400,
-  defaultX = 200,
-  defaultY = 200,
+  defaultWidth = 1280,
+  defaultHeight = 720,
   buttons = [],
 }: WindowProps) {
+  
   if (!isOpen) return null;
+
+  const centerX = (window.innerWidth - defaultWidth) / 2;
+  const centerY = (window.innerHeight - defaultHeight) / 2;
 
   return (
     <Rnd
-      default={{ x: defaultX, y: defaultY, width: defaultWidth, height: defaultHeight }}
+      default={{ x: centerX, y: centerY, width: defaultWidth, height: defaultHeight }}
       className={styles.window}
       dragHandleClassName={styles.header}
       bounds={"window"}
@@ -38,11 +40,17 @@ export default function Window({
       <header className={styles.header}>
         <strong>{title}</strong>
         {buttons.map((btn, index) => (
-          <button className={styles.defaultButton} key={index} onClick={btn.onClick}>
+          <button
+            className={styles.defaultButton}
+            key={index}
+            onClick={btn.onClick}
+          >
             {btn.label}
           </button>
         ))}
-        <button onClick={onClose} className={styles.closeButton}><IoMdCloseCircleOutline className={styles.iconClose} size={20}/></button>
+        <button onClick={onClose} className={styles.closeButton}>
+          <IoMdCloseCircleOutline className={styles.iconClose} size={20} />
+        </button>
       </header>
 
       {children}

@@ -118,7 +118,7 @@ export default function TextEditor() {
 
     return (
         <>
-            <DesktopIcon title={title} onDoubleClick={onClick} x={20} y={50} Icon={<TiDocumentText size={50} />} />
+            <DesktopIcon title={title} onDoubleClick={onClick} x={20} y={50} Icon={<TiDocumentText size={50} color="white"/>} />
 
             <Window
                 title={title}

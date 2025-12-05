@@ -1,11 +1,13 @@
 .taskbar{
-    width: 100%;
+    width: 60%;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 50px;
-    background-color: white;
+    background-color: rgba(153, 153, 153, 0.514);
     position: absolute;
     bottom: 0;
+    border-radius: 10px;
+    left: 20%;
 }
