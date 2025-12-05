@@ -20,7 +20,8 @@ export default function TextEditor() {
     const [actualFiles, setActualFiles] = useState<FileItem | undefined>(undefined);
 
     const title = "TextEditor";
-    useRegisterWindow(title, openWindow);
+    
+    useRegisterWindow("TiDocumentText", openWindow);
 
     const findFiles = () => {
         const saved = localStorage.getItem("webos_files");

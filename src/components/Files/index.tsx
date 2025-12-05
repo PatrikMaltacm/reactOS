@@ -23,7 +23,7 @@ export default function Files() {
 
   const title = "Files"
 
-  useRegisterWindow(title, openWindow);
+  useRegisterWindow("FaFolder", openWindow);
 
 
   // -------------------------------------------------------------------

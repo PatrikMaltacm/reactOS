@@ -1,15 +1,16 @@
 import { useContext } from "react";
 import { OpenedWindowsContext } from "../../context/OpenedWindowsContext";
 import styles from "./TaskBar.module.css"
+import DynamicIcon from "../DinamicIcon";
 
 function TaskBar() {
   const { openedWindows } = useContext(OpenedWindowsContext);
 
   return (
     <div className={styles.taskbar}>
-        {openedWindows.map((window) => {
+        {openedWindows.map((window: any) => {
             return(
-                <h1>{window}</h1>
+                <DynamicIcon name={window} size={45}/>
             )
         })}
     </div>

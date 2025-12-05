@@ -15,7 +15,7 @@ export default function BlackJack() {
 
     const title = "BlackJack"
 
-    useRegisterWindow(title, openWindow);
+    useRegisterWindow("GiCardJackClubs", openWindow);
 
     const onClick = () => {
         setOpenWindow(true);
